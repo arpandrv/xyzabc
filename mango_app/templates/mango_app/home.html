@@ -1,0 +1,161 @@
+{% extends 'mango_app/base.html' %}
+{% load static %}
+
+{% block title %}Mango Surveillance{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <!-- Page Title -->
+        <h1 class="mb-4">Mango Pest and Disease Surveillance</h1>
+
+        <!-- Call-to-Action Section -->
+        <section class="card mb-4 border-warning">
+            <div class="card-body bg-light">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h3 class="text-warning mb-2">
+                            <i class="fas fa-chart-line me-2"></i>
+                            Ready to Start Professional Surveillance?
+                        </h3>
+                        <p class="mb-2">
+                            Calculate surveillance effort, record observations, and track your mango orchard's health
+                            with our advanced surveillance hub.
+                        </p>
+                        <small class="text-muted">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Professional surveillance recording system with calculations and reporting
+                        </small>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <a href="/surveillance-hub/" class="btn btn-warning btn-lg fw-bold">
+                            <i class="fas fa-rocket me-2"></i>
+                            Launch Surveillance Hub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section class="card mb-4">
+            <div class="card-body">
+                <h2>Welcome to the Mango Pest and Disease Surveillance Portal</h2>
+                <p>This resource provides information about common pests and diseases affecting mango cultivation in
+                    Australia, along with recommended surveillance methods for early detection and management.</p>
+                <p>Australian agriculture contributes significantly to the country's exports, but millions of dollars
+                    are lost each year due to pests and plant diseases. Robust surveillance practices are essential for
+                    preventing and managing potentially catastrophic outbreaks.</p>
+                <hr>
+                <h3>Use this portal to:</h3>
+                <ul>
+                    <li>Learn about common mango pests and their identification</li>
+                    <li>Understand prevalent mango diseases and their symptoms</li>
+                    <li>Explore effective surveillance methods for your mango orchard</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Featured Resources Section -->
+        <section>
+            <h2 class="mb-3">Featured Resources</h2>
+            <div class="row">
+                <!-- Mango Pests Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'mango_app/images/mango_pest_preview.jpg' %}" class="card-img-top"
+                            alt="Mango Pest" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Mango Pests</h3>
+                            <p class="card-text flex-grow-1">Identify common pests affecting mango cultivation in
+                                Australia.</p>
+                            <a href="{% url 'mango_app:mango_items' %}" class="btn btn-outline-custom mt-auto">View
+                                Pests & Diseases</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mango Diseases Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'mango_app/images/mango_disease_preview.jpg' %}" class="card-img-top"
+                            alt="Mango Diseases" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Mango Diseases</h3>
+                            <p class="card-text flex-grow-1">Recognize symptoms of common diseases affecting mango
+                                trees.</p>
+                            <a href="{% url 'mango_app:mango_items' %}" class="btn btn-outline-custom mt-auto">View
+                                Pests & Diseases</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Surveillance Methods Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{% static 'mango_app/images/surveillance_preview.jpg' %}" class="card-img-top"
+                            alt="Surveillance Methods" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Surveillance Methods</h3>
+                            <p class="card-text flex-grow-1">Discover effective methods for monitoring your mango
+                                orchard.</p>
+                            <a href="{% url 'mango_app:surveillance_guide' %}" class="btn btn-outline-custom mt-auto">Learn
+                                About Surveillance</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Sections -->
+        <section class="row d-flex">
+            <!-- Did You Know Section -->
+            <div class="col-md-6">
+                <div class="card bg-light mb-4 h-100 did-you-know-section">
+                    <div class="card-header">
+                        <h3 class="mb-0"><i class="fas fa-lightbulb me-2"></i>Did You Know?</h3>
+                    </div>
+                    <div class="card-body">
+                        {% for fact in mango_facts %}
+                        <div class="fact-item">
+                            {{ fact.content }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Surveillance Calendar Section -->
+            <div class="col-md-6">
+                <div class="card mb-4 h-100">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="mb-0"><i class="fas fa-calendar-alt me-2"></i>Surveillance Calendar</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4>Critical Monitoring Periods:</h4>
+
+                        {% for period in surveillance_periods %}
+                        <div
+                            class="calendar-item d-flex justify-content-between align-items-center p-2 {% if not forloop.last %}border-bottom{% endif %}">
+                            <div>{{ period.name }} ({{ period.months }})</div>
+                            <div class="risk-tag {{ period.get_risk_tag_class }}">{{ period.get_risk_display }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Project Section -->
+        <section class="card mt-4">
+            <div class="card-body">
+                <h3>About the Project</h3>
+                <p>This website is part of a project to help Australian mango growers implement effective pest and
+                    disease surveillance. Explore the site to learn more about common mango pests and diseases, and best
+                    practices for monitoring your orchard.</p>
+                <a href="{% url 'mango_app:about' %}" class="btn btn-custom">Learn more about the project</a>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

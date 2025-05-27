@@ -1,0 +1,105 @@
+{% extends 'mango_app/base.html' %}
+{% load static %}
+
+{% block title %}Mango Surveillance Methods{% endblock %}
+
+{% block content %}
+<!-- Page Title -->
+<h1 class="mb-4">Mango Surveillance Methods</h1>
+
+<!-- Introduction Section -->
+<section class="card mb-4">
+    <div class="card-body">
+        <h2>Mango Surveillance Methods</h2>
+        <p>Effective surveillance is crucial for early detection of pests and diseases in mango orchards. This page outlines recommended surveillance methods for Australian mango growers.</p>
+        <p>Regular monitoring helps identify problems before they become severe, reducing the need for extensive management interventions and minimizing economic losses.</p>
+    </div>
+</section>
+
+<!-- Why Surveillance Matters Section -->
+<section class="card mb-4">
+    <div class="card-header bg-light">
+        <h2 class="mb-0">Why Surveillance Matters</h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <!-- Information Column -->
+            <div class="col-md-8">
+                <h3>Benefits of Regular Surveillance:</h3>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item">Early detection of pests and diseases</li>
+                    <li class="list-group-item">Reduced chemical interventions through targeted treatments</li>
+                    <li class="list-group-item">Better crop quality and yield</li>
+                    <li class="list-group-item">Compliance with biosecurity requirements</li>
+                    <li class="list-group-item">Evidence for pest-free status for market access</li>
+                </ul>
+                <p>Without adequate surveillance, pests and diseases can establish and spread rapidly, leading to significant economic losses and potentially long-term management challenges.</p>
+            </div>
+            
+            <!-- Image Column -->
+            <div class="col-md-4">
+                <img src="{% static 'mango_app/images/surveillance_importance.jpg' %}" class="img-fluid rounded" alt="Mango grower inspecting trees">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Surveillance Methods Section -->
+<section>
+    <h2 class="mb-3">Surveillance Methods</h2>
+    <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+        {% for method in surveillance_methods %}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">{{ method.name }}</h3>
+                </div>
+                <div class="card-body">
+                    <p>{{ method.description }}</p>
+                    
+                    <h4>Best For:</h4>
+                    <ul>
+                        {% for item in method.best_for %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                    
+                    <h4>Recommended Frequency:</h4>
+                    <p>{{ method.frequency }}</p>
+                    
+                    <h4>Procedure:</h4>
+                    <p>{{ method.procedure }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Record Sheet Section -->
+<section class="card">
+    <div class="card-header bg-light">
+        <h2 class="mb-0">Sample Monitoring Record Sheet</h2>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>Field</th>
+                        <th>Information to Record</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for field in record_sheet_fields %}
+                    <tr>
+                        <td>{{ field.field_name }}</td>
+                        <td>{{ field.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'mango_app/base.html' %}
+{% load static %}
+
+{% block title %}{{ item.name }} - Details{% endblock %}
+
+{% block content %}
+<!-- Breadcrumbs Navigation -->
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'mango_app:home' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'mango_app:mango_items' %}">Pests & Diseases</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ item.name }}</li>
+    </ol>
+</nav>
+
+<!-- Page Title -->
+<h1 class="mb-4">{{ item.name }}</h1>
+
+<!-- Item Overview Section -->
+<section class="card mb-4">
+    <div class="row g-0">
+        <!-- Item Image -->
+        <div class="col-md-4">
+            <img src="{% static item.image_path %}" class="img-fluid rounded-start" alt="{{ item.name }}" style="height: 100%; object-fit: cover;">
+        </div>
+        
+        <!-- Item Basic Information -->
+        <div class="col-md-8">
+            <div class="card-body">
+                <h2 class="card-title">{{ item.name }}</h2>
+                <p class="scientific-name">{{ item.scientific_name }}</p>
+                
+                <!-- Type Badge -->
+                <p class="card-text">
+                    <span class="badge {% if item.item_type == 'pest' %}bg-warning{% else %}bg-info{% endif %} mb-2">
+                        {{ item.get_item_type_display }}
+                    </span>
+                </p>
+                
+                <!-- Description -->
+                <p class="card-text">{{ item.description }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Detailed Information Section -->
+<section class="card mb-4">
+    <div class="card-header bg-light">
+        <h3 class="mb-0">Detailed Information</h3>
+    </div>
+    <div class="card-body">
+        <p>{{ item.detailed_info }}</p>
+    </div>
+</section>
+
+<!-- Surveillance Recommendations Section -->
+<section class="card mb-4">
+    <div class="card-header bg-light">
+        <h3 class="mb-0">Surveillance Recommendations</h3>
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            {% for rec in recommendation.recommendations %}
+            <li class="list-group-item">{{ rec }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+<!-- Navigation Button -->
+<div class="d-flex gap-2">
+    <a href="{% url 'mango_app:mango_items' %}" class="btn btn-outline-custom">
+        <i class="fas fa-arrow-left me-2"></i>Back to Pests & Diseases
+    </a>
+</div>
+{% endblock %}

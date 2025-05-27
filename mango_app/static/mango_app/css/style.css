@@ -1,0 +1,184 @@
+/**
+ * Mango Surveillance Project Stylesheet
+ * 
+ * This stylesheet contains all custom styles for the Mango Pest and Disease
+ * Surveillance website. The styles are organized into logical sections.
+ */
+
+/* ======================================================================
+   VARIABLES
+   ====================================================================== */
+:root {
+    /* Primary Colors */
+    --primary-color: #2e7d32;        /* Dark green - main theme color */
+    --primary-dark: #1b5e20;         /* Darker green for hover states */
+    --primary-light: #a5d6a7;        /* Light green for accents */
+    --primary-bg-light: #e9f5e9;     /* Very light green background */
+    --primary-border-light: #c8e6c9; /* Light green border color */
+    
+    /* Risk Level Colors */
+    --high-risk-color: #f44336;      /* Red for high risk */
+    --medium-risk-color: #ff9800;    /* Orange for medium risk */
+    --low-risk-color: #4caf50;       /* Green for low risk */
+    
+    /* Text Colors */
+    --text-muted: #666;              /* Muted text color */
+    
+    /* Transition Speed */
+    --transition-speed: 0.3s;        /* Standard transition speed */
+}
+
+/* ======================================================================
+   BASE COMPONENTS
+   ====================================================================== */
+
+/* ----- Navigation ----- */
+.navbar-custom {
+    background-color: var(--primary-color);
+}
+
+/* ----- Buttons ----- */
+.btn-outline-custom {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: all var(--transition-speed) ease;
+}
+
+.btn-outline-custom:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-custom {
+    background-color: var(--primary-color);
+    color: white;
+    transition: all var(--transition-speed) ease;
+}
+
+.btn-custom:hover {
+    background-color: var(--primary-dark);
+    color: white;
+}
+
+/* ----- Footer ----- */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+footer a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* ----- Cards ----- */
+.card {
+    transition: transform var(--transition-speed) ease, 
+                box-shadow var(--transition-speed) ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-header.bg-success {
+    background-color: var(--primary-color) !important;
+}
+
+/* ----- Tables ----- */
+.table-hover tbody tr:hover {
+    background-color: rgba(46, 125, 50, 0.1);
+}
+
+/* ======================================================================
+   TEXT STYLES
+   ====================================================================== */
+
+/* Scientific names in italics */
+.scientific-name {
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+/* ======================================================================
+   SURVEILLANCE CALENDAR COMPONENTS
+   ====================================================================== */
+
+.calendar-item {
+    transition: background-color var(--transition-speed) ease;
+}
+
+.calendar-item:hover {
+    background-color: rgba(46, 125, 50, 0.1);
+}
+
+/* Risk level tags */
+.risk-tag {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    min-width: 100px;
+}
+
+.high-risk {
+    background-color: var(--high-risk-color);
+    color: white;
+}
+
+.medium-risk {
+    background-color: var(--medium-risk-color);
+    color: white;
+}
+
+.low-risk {
+    background-color: var(--low-risk-color);
+    color: white;
+}
+
+/* ======================================================================
+   FACT SECTIONS
+   ====================================================================== */
+
+/* Did You Know section container */
+.did-you-know-section {
+    background-color: var(--primary-bg-light);
+    border-left: 5px solid var(--primary-color);
+}
+
+.did-you-know-section .card-header {
+    background-color: transparent;
+    border-bottom: none;
+    padding-bottom: 0.5rem;
+}
+
+.did-you-know-section .card-header h3 {
+    color: var(--primary-dark);
+}
+
+/* Individual fact items */
+.fact-item {
+    background-color: #ffffff;
+    border: 1px solid var(--primary-border-light);
+    border-left: 4px solid var(--low-risk-color);
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.fact-item:last-child {
+    margin-bottom: 0;
+}

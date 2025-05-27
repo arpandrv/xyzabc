@@ -1,0 +1,107 @@
+{% extends 'mango_app/base.html' %}
+{% load static %}
+
+{% block title %}About the Project{% endblock %}
+
+{% block content %}
+<!-- Page Title -->
+<h1 class="mb-4">About the Project</h1>
+
+<div class="row">
+    <!-- Main Content Column -->
+    <div class="col-md-8">
+        <!-- Project Information Section -->
+        <section class="card mb-4">
+            <div class="card-body">
+                <h2>About This Project</h2>
+                <p>This website was developed as part of the HIT237 Building Interactive Software course in 2025.</p>
+                
+                <p>The goal of this project is to create an informative resource for Australian mango growers about pest and disease surveillance. This static website serves as the first phase (Objective 1) of a larger project that will eventually include an interactive surveillance calculator.</p>
+                
+                <!-- Project Background -->
+                <h3 class="mt-4">Project Background</h3>
+                <p>Australian agriculture contributes 10.8% of the country's goods and services exports. Unfortunately, millions of dollars are lost each year due to pests or plant diseases. Robust plant surveillance data can help Australian growers and governments improve the prevention and management of potentially catastrophic pests and plant diseases.</p>
+                
+                <p>Mango production is an important industry in Australia, particularly in northern regions. Effective pest and disease surveillance is critical for maintaining productivity, fruit quality, and market access.</p>
+                
+                <!-- Project Objectives -->
+                <h3 class="mt-4">Project Objectives</h3>
+                <p><strong>Objective 1 (Current Phase):</strong> Build an informative but static website using Django that provides information about known pests and plant diseases affecting mangoes which require growers' surveillance.</p>
+                
+                <p><strong>Objective 2 (Future Phase):</strong> Develop the output of Objective 1 into an interactive web application using Django that can be used by growers to calculate the surveillance effort required to be undertaken on their property.</p>
+            </div>
+        </section>
+        
+        <!-- Team Members Section -->
+        <section class="card">
+            <div class="card-header bg-light">
+                <h2 class="mb-0">Team Members</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for member in team_members %}
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ member.name }}</h4>
+                                <p class="card-text">Student ID: {{ member.student_id }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Sidebar Column -->
+    <div class="col-md-4">
+        <!-- Resources Section -->
+        <section class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h2 class="mb-0 h5">Resources</h2>
+            </div>
+            <div class="card-body">
+                <h3 class="h5">Additional Information</h3>
+                
+                <div class="list-group">
+                    {% for resource in external_resources %}
+                    <a href="{{ resource.url }}" 
+                       class="list-group-item list-group-item-action" target="_blank">
+                       {{ resource.name }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section class="card">
+            <div class="card-header bg-success text-white">
+                <h2 class="mb-0 h5">Contact</h2>
+            </div>
+            <div class="card-body">
+                <p>For more information about this project, please contact:</p>
+                
+                <address>
+                    <strong>{{ contact.name }}</strong><br>
+                    {{ contact.organization }}<br>
+                    {{ contact.address }}<br><br>
+                    {{ contact.email }}<br>
+                    {{ contact.phone }}
+                </address>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Disclaimer Section -->
+<section class="card mt-4 bg-light" id="disclaimer">
+    <div class="card-body">
+        <h2>Disclaimer</h2>
+        <p>This website is for educational purposes only. While efforts have been made to ensure the accuracy of the information provided, users should consult professional agricultural advisors and relevant authorities for specific pest and disease management advice.</p>
+        
+        <p>Images used on this website are for illustrative purposes. In a real implementation, proper attribution would be provided for all images, or original photographs would be used.</p>
+    </div>
+</section>
+{% endblock %}
